@@ -36,7 +36,7 @@ const IndexPage = ({ data }) => {
 
 export const IndexQuery = graphql`
   query {
-    allSongsCsv {
+    allSongsCsv(sort: {order: ASC, fields: [release, album]}) {
       edges {
         node {
           id
