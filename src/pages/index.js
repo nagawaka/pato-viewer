@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 
 
 const IndexPage = ({ data }) => {
-  const { allSongsCsv } = data;
+  const { allSongsJson } = data;
 
   return (<div>
     <h1>Pato Viewer</h1>
@@ -16,17 +16,17 @@ const IndexPage = ({ data }) => {
           <th>Nome</th>
           <th>Álbum</th>
           <th>Lançamento</th>
-          <th>Relacionado</th>
+          <th>Popularidade</th>
         </tr>
       </thead>
       <tbody>
-        {allSongsCsv.edges.map(song => (
+        {allSongsJson.edges.map(song => (
           <tr key={song.node.id}>
             <td>{song.node.id}</td>
-            <td>{song.node.nome}</td>
-            <td>{song.node.album}</td>
-            <td>{song.node.release}</td>
-            <td>{song.node.related}</td>
+            <td>{song.node.name}</td>
+            <td>{song.node.album.name}</td>
+            <td>{song.node.album.release_date}</td>
+            <td>{song.node.popularity}</td>
           </tr>
         ))}
       </tbody>
@@ -36,14 +36,24 @@ const IndexPage = ({ data }) => {
 
 export const IndexQuery = graphql`
   query {
-    allSongsCsv(sort: {order: ASC, fields: [release, album]}) {
+    allSongsJson(sort: {order: DESC, fields: popularity}) {
       edges {
         node {
+          album {
+            id
+            name
+            release_date
+            release_date_precision
+          }
+          artists {
+            name
+            id
+          }
           id
-          nome
-          album
-          release
-          related
+          name
+          track_number
+          preview_url
+          popularity
         }
       }
     }

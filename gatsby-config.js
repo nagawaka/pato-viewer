@@ -13,6 +13,7 @@ module.exports = {
     //     trackingId: `UA-93349937-2`,
     //   },
     // },
+    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
