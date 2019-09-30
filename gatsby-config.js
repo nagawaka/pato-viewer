@@ -6,13 +6,6 @@
 
 module.exports = {
   plugins: [
-    `gatsby-transformer-csv`,
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: `UA-93349937-2`,
-    //   },
-    // },
     `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,

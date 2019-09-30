@@ -3,21 +3,21 @@ import { Link, graphql } from "gatsby";
 
 import DataTable from './../components/data-table';
 
-const IndexPage = ({ data }) => {
+const TonePage = ({ data }) => {
   const { allSongsJson } = data;
 
   return (<div>
     <h1>Pato Viewer - <small>{allSongsJson.totalCount} músicas</small></h1>
 
-    <Link to="/tone">Ordenar por tom</Link>
+    <Link to="/">Ordenar por popularidade</Link>
 
     <DataTable allSongsJson={allSongsJson} />
   </div>)
 }
 
-export const IndexQuery = graphql`
+export const ToneQuery = graphql`
   query {
-    allSongsJson(sort: {order: DESC, fields: popularity}) {
+    allSongsJson(sort: {order: DESC, fields: [features___danceability, popularity]}) {
       totalCount,
       edges {
         node {
@@ -58,4 +58,4 @@ export const IndexQuery = graphql`
   }
 `
 
-export default IndexPage;
+export default TonePage;
